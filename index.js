@@ -2,16 +2,27 @@ import dotenv from "dotenv";
 dotenv.config();
 import express, { urlencoded } from "express";
 import ejs from "ejs";
-import router from "./src/Routes/HomeRoutes.js";
+import router from "./src/route/HomeRoutes.js";
 import path from "path";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import expressLayouts from 'express-ejs-layouts';
+import session from "express-session";
 
 const app  = express();
 
+
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+
+app.use(session({
+    secret : process.env.SECRET , 
+    resave : false ,
+    saveUninitialized : true ,
+    cookie : {secure : false}
+}))
 
 app.use(express.urlencoded({ extended: true }));
 // Set the views directory
