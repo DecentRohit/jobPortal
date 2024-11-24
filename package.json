@@ -1,0 +1,14 @@
+{
+  "name": "jobportal",
+  "version": "1.0.0",
+  "description": "website to search for job as a applicant\r and post a job as a recruiter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
