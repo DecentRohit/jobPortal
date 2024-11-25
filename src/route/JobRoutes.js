@@ -12,8 +12,11 @@ jobRoutes.get('/' , jobController.getAll )
 
 jobRoutes.post('/' , jobController.createJob )
 jobRoutes.put('/:id' , jobController.editJob )
-jobRoutes.delete('/:delete' , jobController.deleteOne )
+jobRoutes.delete('/:id' , jobController.deleteOne )
 jobRoutes.get('/:id' , jobController.getOne )
+jobRoutes.get('/:id/update' , jobController.showUpdateForm)
+jobRoutes.post('/:id/update' , jobController.updateJob )
+
 
 
 export default jobRoutes;
