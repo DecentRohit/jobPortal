@@ -9,7 +9,7 @@ router.use('/jobs' , jobRoutes)
 router.get('/apply/:id' , jobController.apply)
 router.use('/' , AuthRouter)
 router.get('/404' , (req, res)=>{
-    res.render('error')
+    res.render('error' , { layout: false })
 })
 
 

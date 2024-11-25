@@ -35,9 +35,16 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 app.set('layout', 'layout'); // Points to `views/layout.ejs`
-app.set("layout extractStyles" , true); //tell ejs where to put <link or script tag when encountered in pages
-app.set("layout extractScripts" , true);
+
+ //tell ejs where to put <link or script tag when encountered in pages
+app.set("layout extractScripts" , true); 
 app.use('/' , router);
+
+
+// 4. Middleware to handle 404 requests.should be placed at end
+app.use((req, res)=>{
+    res.status(404).render('error' , { layout: false })
+  });
 
 
 
