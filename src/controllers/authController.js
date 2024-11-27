@@ -1,4 +1,5 @@
 import UserModel from "../models/userSchema.js"
+import { getAll } from "./jobController.js";
 
 export const login = async(req, res)=>{
    const {email, password} = req.body;
@@ -10,13 +11,13 @@ export const login = async(req, res)=>{
     res.locals.user = user; 
     req.session.user = user;
     console.log("logged in")
-    res.render('jobs')
+    getAll(req, res);
  
    
     }
     export const logout = async(req, res)=>{
-        delete res.locals.user ;
-        req.session.destroy((err)=>{
+   delete res.locals.user ;
+     await   req.session.destroy((err)=>{
             console.log("logged out successfully")
             if(err){
                 console.log(err)

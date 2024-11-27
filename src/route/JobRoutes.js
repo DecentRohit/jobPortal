@@ -9,7 +9,7 @@ const jobRoutes  = express.Router();
 
 jobRoutes.use('/:id/applicants' ,applicantRoutes )
 jobRoutes.get('/' , jobController.getAll )
-
+jobRoutes.get('/postJob' , jobController.postJobForm )
 jobRoutes.post('/' , jobController.createJob )
 jobRoutes.put('/:id' , jobController.editJob )
 jobRoutes.delete('/:id' , jobController.deleteOne )
