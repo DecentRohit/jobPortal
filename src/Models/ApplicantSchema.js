@@ -17,5 +17,5 @@ const applicantSchema = new mongoose.Schema({
     }
 })
 
-const Applicant = mongoose.model('applicant' , applicantSchema) ;
-export default Applicant;
+const ApplicantModel = mongoose.model('Applicant' , applicantSchema) ;
+export default ApplicantModel;

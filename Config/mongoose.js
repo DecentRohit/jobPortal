@@ -12,8 +12,3 @@ export const connectUsingMongoose = async () => await mongoose.connect(URL).then
     console.log(err)
 })
 
-
-export const getDB = async (client) => {
-    return client.db();
-}
-

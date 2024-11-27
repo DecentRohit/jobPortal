@@ -1,14 +1,11 @@
 
 
-// to do
-
-// nodemailer,
 // JsonWebTokenError
 // session cookieParser
 // all Controller
 import nodemailer from 'nodemailer';
 
-const userEmail = 'todo'
+const userEmail = req.session.userEmail;
 const transporter = nodemailer.createTransport({
 
     service : 'gmail' ,

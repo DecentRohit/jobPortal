@@ -1,5 +1,5 @@
 export const getAll = async(req, res)=>{
-res.end("all jobs")
+res.render("jobs")
 }
 export const getOne = async(req, res)=>{
     

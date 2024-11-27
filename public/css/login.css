@@ -1,12 +1,7 @@
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 /* Body Styles */
-body {
+.loginMain {
     font-family: Arial, sans-serif;
     background-color: #f7f7f7;
     display: flex;
@@ -16,7 +11,7 @@ body {
 }
 
 /* Login Container */
-.login-container {
+.loginMain .login-container {
     background-color: white;
     padding: 2rem;
     border-radius: 8px;
@@ -27,25 +22,25 @@ body {
 }
 
 /* Header */
-h2 {
+.loginMain h2 {
     margin-bottom: 1.5rem;
     color: #333;
 }
 
 /* Form Group Styles */
-.form-group {
+.loginMain .form-group {
     margin-bottom: 1.5rem;
     text-align: left;
 }
 
-.form-group label {
+.loginMain .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: bold;
     color: #555;
 }
 
-.form-group input {
+.loginMain form-group input {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
@@ -53,13 +48,13 @@ h2 {
     font-size: 1rem;
 }
 
-.form-group input:focus {
+.loginMain .form-group input:focus {
     border-color: #007bff;
     outline: none;
 }
 
 /* Submit Button */
-.btn {
+.loginMain .btn {
     width: 100%;
     padding: 0.8rem;
     background-color: #007bff;
@@ -70,22 +65,22 @@ h2 {
     cursor: pointer;
 }
 
-.btn:hover {
+.loginMain .btn:hover {
     background-color: #0056b3;
 }
 
 /* Message */
-.message {
+.loginMain .message {
     margin-top: 1rem;
     font-size: 0.9rem;
     color: #555;
 }
 
-.message a {
+.loginMain .message a {
     color: #007bff;
     text-decoration: none;
 }
 
-.message a:hover {
+.loginMain .message a:hover {
     text-decoration: underline;
 }

@@ -21,7 +21,7 @@ app.use(session({
     secret : process.env.SECRET , 
     resave : false ,
     saveUninitialized : true ,
-    cookie : {secure : false}
+    cookie : {   maxAge: 1000 * 60 * 60, secure : false}
 }))
 
 app.use(express.urlencoded({ extended: true }));
@@ -34,10 +34,11 @@ app.set('view engine', 'ejs');
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
-app.set('layout', 'layout'); // Points to `views/layout.ejs`
+app.set('layout', 'layout' ); // Points to `views/layout.ejs`
 
  //tell ejs where to put <link or script tag when encountered in pages
-app.set("layout extractScripts" , true); 
+ app.set('layout extractStyles', true);
+ app.set('layout extractScripts', true);
 app.use('/' , router);
 
 
