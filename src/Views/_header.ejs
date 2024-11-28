@@ -15,15 +15,15 @@
           <li class="nav-item dropdown">
 
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <% if (locals.user) { %>
-                <%=user.name %>
+              <% if (locals.userInfo) { %>
+                <%=userInfo.userName %>
             <% } else { %>
               Recruiter
             <% } %>
          
             </a>
             <ul class="dropdown-menu">
-              <% if (locals.user) { %>
+              <% if (locals.userInfo) { %>
                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
             <% } else { %>
               <li><a class="dropdown-item" href="/loginPage">Login</a></li>
@@ -31,7 +31,7 @@
             <% } %>
             
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Post a new Job</a></li>
+              <li><a class="dropdown-item" href="/jobs/postJob">Post a new Job</a></li>
             </ul>
           </li>
           <!-- <li class="nav-item">

@@ -4,8 +4,7 @@ export const getAll = async(req, res)=>{
 
 try{
     const jobs = await JobModel.find({});
-console.log(jobs)
-    res.render("jobs" , {jobs})
+    res.render("jobs", { jobs, userInfo: req.session.userInfo });
 }catch(err){
     console.log(err)
 }

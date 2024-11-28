@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import session from "express-session";
+import cookieParser from "cookie-parser";
 
 const app  = express();
 
@@ -23,6 +24,7 @@ app.use(session({
     saveUninitialized : true ,
     cookie : {   maxAge: 1000 * 60 * 60, secure : false}
 }))
+app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: true }));
 // Set the views directory

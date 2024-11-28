@@ -1,4 +1,5 @@
 import UserModel from "../models/userSchema.js"
+import jwt from "jsonwebtoken";
 import { getAll } from "./jobController.js";
 
 export const login = async(req, res)=>{
@@ -7,15 +8,19 @@ export const login = async(req, res)=>{
    if(!user){
     res.render('userNotFound')
    }
- 
+   const userName = user.name;
+   const userID = user._id ;
+   const userEmail = user.email ;
+  
     res.locals.user = user; 
-    req.session.user = user;
+    req.session.userInfo = {userID , userName , userEmail};
     console.log("logged in")
-    getAll(req, res);
+    res.redirect('/jobs')
  
    
     }
     export const logout = async(req, res)=>{
+    
    delete res.locals.user ;
      await   req.session.destroy((err)=>{
             console.log("logged out successfully")
@@ -43,6 +48,6 @@ export const login = async(req, res)=>{
     }
      
     export const home = async(req, res)=>{
-        res.render("home")
+        res.render("home" , {userInfo : req.session.userInfo})
     }
  

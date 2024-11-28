@@ -1,1 +1,15 @@
-<h4>all jobs</h4>
+<div>
+    <h5>Jobs listed below</h5>
+    <% jobs.forEach(job => { %>
+        <ul>
+            <li>Category: <%= job.jobCategory %></li>
+            <li>Designation: <%= job.jobDesignation %></li>
+            <li>Location: <%= job.jobLocation %></li>
+            <li>Company: <%= job.companyName %></li>
+            <li>Salary: <%= job.salary %></li>
+            <li>Skills Required: <%= job.skillsRequired %></li>
+            <li>Apply By: <%= job.applyBy %></li>
+            <li>Number of Openings: <%= job.numberOfOpenings %></li>
+        </ul>
+    <% }); %>
+</div>
