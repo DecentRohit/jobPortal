@@ -1,4 +1,4 @@
-import { setLastVisit } from "../middlewares/lastVisit.js";
+
 import UserModel from "../models/userSchema.js"
 import { getAll } from "./jobController.js";
 
@@ -13,17 +13,13 @@ export const login = async(req, res , next)=>{
    const userID = user._id ;
    const userEmail = user.email;
   
-    res.locals.user = user; 
+  
     req.session.userInfo = {userID , userName , userEmail};
     console.log("logged in")
-    setLastVisit(req,res,next)
-   
- 
+    res.redirect('/jobs')
    
     }
     export const logout = async(req, res)=>{
-    
-   delete res.locals.user ;
      await   req.session.destroy((err)=>{
             console.log("logged out successfully")
             if(err){
@@ -50,7 +46,7 @@ export const login = async(req, res , next)=>{
     }
     
     export const loginPage = async (req, res)=>{
-        res.render("login" , ({title : "Rohit"}))
+        res.render("login" )
     }
      
     export const home = async(req, res)=>{

@@ -4,6 +4,7 @@ import jobRoutes  from "./JobRoutes.js";
 import { AuthRouter } from "./AuthRoutes.js";
 import upload from "../middlewares/fileupload.js";
 import { addNewApplicant } from "../controllers/applicantController.js";
+import { setLastVisit } from "../middlewares/lastVisit.js";
 
 const router = express.Router()
 

@@ -10,6 +10,7 @@ import expressLayouts from 'express-ejs-layouts';
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
+import { setLastVisit } from "./src/middlewares/lastVisit.js";
 
 const app  = express();
 
