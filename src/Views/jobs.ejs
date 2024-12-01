@@ -1,15 +1,24 @@
-<div>
+<link rel="stylesheet" href="/css/jobCard.css"> 
+
+   
     <h5>Jobs listed below</h5>
-    <% jobs.forEach(job => { %>
-        <ul>
-            <li>Category: <%= job.jobCategory %></li>
-            <li>Designation: <%= job.jobDesignation %></li>
-            <li>Location: <%= job.jobLocation %></li>
-            <li>Company: <%= job.companyName %></li>
-            <li>Salary: <%= job.salary %></li>
-            <li>Skills Required: <%= job.skillsRequired %></li>
-            <li>Apply By: <%= job.applyBy %></li>
-            <li>Number of Openings: <%= job.numberOfOpenings %></li>
-        </ul>
-    <% }); %>
-</div>
+    <div class="jobs">
+        <% jobs.forEach(job => { %>
+            <div class="job-card">
+                <h2 class="job-designation"><%=job.Designation%></h2>
+                <p class="job-category"><strong>Category:</strong> <%=job.Category%></p>
+                <p class="company-name"> <strong>Company:</strong> <%=job.companyName%></p>
+                <p class="job-location"> <strong>Location:</strong> <%=job.Location%></p>
+                <p class="salary"> <strong>Salary: </strong><%=job.salary%></p>
+                <p class="openings"> <strong>Openings:</strong> <%=job.numberOfOpenings%></p>
+                <p class="skills-required"> <strong>Skills:</strong> <%=job.skillsRequired%></p>
+                <p class="apply-by"> <strong>Apply By: </strong><%=job.applyBy.toDateString()%></p>
+                <p class="job-posted"> <strong>Posted On: </strong><%=job.postedOn.toDateString()%></p>
+               <form action="/jobs/<%=job._id%>" method="get">
+                <button type="submit" class="applyBtn">View Job</button>
+               </form>
+              
+              </div>
+ 
+        <% }); %>
+    </div>

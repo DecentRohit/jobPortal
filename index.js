@@ -9,6 +9,7 @@ import { dirname, join } from 'path';
 import expressLayouts from 'express-ejs-layouts';
 import session from "express-session";
 import cookieParser from "cookie-parser";
+import MongoStore from "connect-mongo";
 
 const app  = express();
 
@@ -17,14 +18,18 @@ const app  = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-
+app.use(cookieParser())
 app.use(session({
+  store: MongoStore.create({
+    mongoUrl: 'mongodb://localhost:27017/sessions' //storing session in mongodb, so it not lost on server restart
+}),
+  
     secret : process.env.SECRET , 
     resave : false ,
     saveUninitialized : true ,
     cookie : {   maxAge: 1000 * 60 * 60, secure : false}
 }))
-app.use(cookieParser())
+
 
 app.use(express.urlencoded({ extended: true }));
 // Set the views directory

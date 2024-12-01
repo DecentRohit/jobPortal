@@ -25,19 +25,27 @@
             <ul class="dropdown-menu">
               <% if (locals.userInfo) { %>
                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/jobs/postJob">Post a new Job</a></li>
             <% } else { %>
               <li><a class="dropdown-item" href="/loginPage">Login</a></li>
-              <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Sign Up</a></li>
+              <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Sign Up
+              </button></li> 
+              
             <% } %>
+           
             
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/jobs/postJob">Post a new Job</a></li>
+           
             </ul>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li> -->
-        </ul>
+        </ul> 
+        <% if (locals.lastVisit) { %>
+          <div class="alert alert-primary" role="alert">
+            Your last Visit was on : <%=locals.lastVisit%>
+          </div>
+      <% }%>
+       
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>

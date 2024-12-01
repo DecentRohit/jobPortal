@@ -1,0 +1,68 @@
+.jobs {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    background-color: #588798;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    gap: 5%;
+    /* justify-content: center;
+    align-items: center; */
+    height: 100vh;
+  }
+  
+  .job-card {
+    overflow: auto;
+    height: 45%;
+    width: 30%;
+   order: -1;
+    padding: 20px;
+    flex-direction:row-reverse;
+    background-color: #fbf6f6;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    text-align: center;
+    transition: box-shadow 0.3s;
+  }
+  
+  .job-card:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .job-designation {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .job-category,
+  .company-name,
+  .job-location,
+  .salary,
+  .openings,
+  .skills-required,
+  .apply-by,
+  .job-posted {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+  }
+  
+  .jobs .applyBtn {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .jobs .applyBtn:hover {
+    background-color: #0056b3;
+  }
+  

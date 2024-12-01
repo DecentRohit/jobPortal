@@ -1,6 +1,6 @@
 <div><div class="container p-3 mx-auto w-50 form-box my-5 rounded-md">
-    <h2 style="color: #181642" class="text-center mb-3">Post a new Job</h2>
-    <form action="/jobs" method="post">
+    <h2 style="color: #181642" class="text-center mb-3">Update this Job</h2>
+    <form action="/jobs/<%=job.id%>/update" method="post">
       <div class="input-group mb-3">
         <select required="" name="Category" class="form-select" aria-label="Default select example">
           <option selected="" disabled="">select job category</option>
@@ -12,7 +12,7 @@
       <div class="input-group mb-3">
         <label for="job-designation" class="form-label">Job Designation</label>
         <select id="job-designation" name="Designation" class="form-select" aria-label="Select Job Designation" required>
-            <option value="" selected disabled>Select job designation</option>
+            <option value="" selected disabled>Select a Job Category</option>
             <option value="HR">HR</option>
             <option value="SDE">SDE</option>
             <option value="DevOps">DevOps</option>
@@ -29,19 +29,19 @@
       <div class="mb-3">
         <label for="basic-url" class="form-label">Enter job location</label>
         <div class="input-group">
-          <input required="" name="Location" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+          <input required="" name="Location" type="text" value="<%=job.Location%>" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
         </div>
       </div>
   
       <div class="input-group mb-3">
         <span class="input-group-text">Company Name</span>
-        <input required="" name="companyName" type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <input required="" name="companyName" type="text" value="<%=job.companyName%>" class="form-control" aria-label="Amount (to the nearest dollar)">
       </div>
   
       <div class="input-group mb-3">
-        <input required="" name="salary" type="text" class="form-control" placeholder="enter salary" aria-label="Username">
+        <input required="" name="salary" type="text" class="form-control" value="<%=job.salary%>" placeholder="enter salary" aria-label="Username">
         <span class="input-group-text">Total Positions</span>
-        <input required="" name="numberOfOpenings" type="number" class="form-control" placeholder="total no of openings" aria-label="Server">
+        <input required="" name="numberOfOpenings" type="number" value="<%=job.numberOfOpenings%>" class="form-control" placeholder="total no of openings" aria-label="Server">
       </div>
       <div class="input-group mb-3">
         <select required="" multiple="" name="skillsRequired" class="form-select" aria-label="Default select example">
@@ -58,7 +58,7 @@
           <option value="Data Structures &amp; Algo">Data Structures &amp; Algo</option>
         </select>
         <span class="input-group-text">Apply By</span>
-        <input name="applyBy" type="date" required class="form-control" placeholder="total no of openings" aria-label="Server">
+        <input name="applyBy" type="date" class="form-control" required placeholder="total no of openings" aria-label="Server">
       </div>
       <button class="w-100 mb-3 mt-2 btn btn-md btn-success" type="submit">
         Submit
@@ -66,6 +66,3 @@
     </form>
   </div>
   </div>
-   <div class="container mt-4">
-        <%- include('RegisterModal') %>
-      </div>

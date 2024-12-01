@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema({
-    jobCategory:{
+    Category:{
         type : String ,
         enum : ['Tech' , 'Non-Tech']
     } ,
-    jobDesignation: String, 
-    jobLocation: String,
+    Designation: String, 
+    Location: String,
     companyName: String,
     salary: String,
     
     numberOfOpenings: Number, 
     skillsRequired: [String],
     applyBy: Date, 
-    jobPosted: {
+    postedOn: {
         type: Date, 
         default: Date.now
     },
