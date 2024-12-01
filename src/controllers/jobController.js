@@ -1,6 +1,7 @@
 
 import mongoose from "mongoose";
 import JobModel from "../Models/JobSchema.js"
+import Mailer from "../middlewares/nodemailer.js";
 
 export const getAll = async (req, res) => {
 
@@ -48,24 +49,17 @@ export const createJob = async (req, res) => {
         res.render('somethingWentWrong')
     }
 }
-// export const editJob = async(req, res)=>{
-//     try{
-//         res.send("edit job details")
 
-//     }catch(err){
-//         console.log(err)
-//     }
-
-// }
 export const apply = async (req, res) => {
     try {
-
+       
         const job = await JobModel.findByIdAndUpdate(
             req.params.id ,  
      { $push: { applicants:new mongoose.Types.ObjectId(req.applicant) } },
         { new: true });
+        job.save();
         console.log("applied for this job successfully")
-        getOne(req, res)
+       Mailer(req, res)
 
     } catch (err) {
         console.log(err)

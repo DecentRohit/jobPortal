@@ -5,8 +5,6 @@ Deployment : https://easily-deploy.onrender.com/
 
 <!---->
 todo:
-bcrypt
-nodemailer 
 aleart
 css fix
 noty

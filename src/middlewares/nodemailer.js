@@ -1,9 +1,14 @@
 
 // all Controller
 import nodemailer from 'nodemailer';
-const Mailer = async (req, res, next)=>{
+import ApplicantModel from '../models/applicantSchema.js';
+import { getOne } from '../controllers/jobController.js';
 
-    const userEmail = req.session.userInfo.userEmail;
+const Mailer = async (req, res)=>{
+try{
+    const applicant = await ApplicantModel.findById(req.applicant)
+    const applicantEmail = applicant.email;
+    console.log(applicantEmail)
     const transporter =  await nodemailer.createTransport({
     
         service : 'gmail' ,
@@ -15,14 +20,19 @@ const Mailer = async (req, res, next)=>{
     
     const mailOptions = {
         from : 'royrohit848@gmail.com' ,
-        to : userEmail ,
+        to : applicantEmail ,
         subject : 'Applied for new Job',
         text : 'Job application has been registered with us'
     }
     
-    const sendMail =  await transporter.sendMail(mailOptions);
-    sendMail();
-    next();
+ await transporter.sendMail(mailOptions);
+   
+getOne(req,res)
+}catch(err){
+    console.log(err)
+
+}
+   
 }
 
 
