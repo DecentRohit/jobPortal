@@ -6,7 +6,7 @@ Deployment : https://easily-deploy.onrender.com/
 <!---->
 todo:
 bcrypt
-lastvisit
-nodemailer aleart
+nodemailer 
+aleart
 css fix
 noty

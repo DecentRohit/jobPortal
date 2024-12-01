@@ -1,22 +1,35 @@
-
+import bcrypt from 'bcrypt';
 import UserModel from "../models/userSchema.js"
 import { getAll } from "./jobController.js";
 
 
 export const login = async(req, res , next)=>{
-   const {email, password} = req.body;
-   const user =  await UserModel.findOne({email,password });
-   if(!user){
-    res.render('userNotFound')
-   }
-   const userName = user.name;
-   const userID = user._id ;
-   const userEmail = user.email;
-  
-  
-    req.session.userInfo = {userID , userName , userEmail};
-    console.log("logged in")
-    res.redirect('/jobs')
+  try{
+    const {email, password} = req.body;
+    const user =  await UserModel.findOne({email});
+    if(user){
+        const passwordMatched = await bcrypt.compare(password , user.password)
+        if(passwordMatched){
+         const userName = user.name;
+         const userID = user._id ;
+         const userEmail = user.email;
+        
+        
+          req.session.userInfo = {userID , userName , userEmail};
+          console.log("logged in")
+          res.redirect('/jobs')
+        }else{
+         res.render('userNotFound')
+        }
+    }else{
+        res.render('userNotFound')
+    }
+   
+  } catch(err){
+    console.log(err)
+    res.render('somethingWentWrong')
+  }
+   
    
     }
     export const logout = async(req, res)=>{
@@ -34,11 +47,12 @@ export const login = async(req, res , next)=>{
     }
     export const register = async(req, res)=>{
         const {name , email , password } = req.body;
-        const user = UserModel.findOne({email});
+        const user = await UserModel.findOne({email});
         if(user){
         console.log("user already exists")
         }else{
-            const newRecruiter = await UserModel.create({name, email , password})
+            const hashpassword = await bcrypt.hash(password , 12)
+            const newRecruiter = await UserModel.create({name, email , password : hashpassword})
             await   newRecruiter.save();
         }
        
