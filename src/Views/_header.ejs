@@ -40,11 +40,7 @@
             </ul>
           </li>
         </ul> 
-        <% if (locals.lastVisit) { %>
-          <div class="alert alert-primary" role="alert">
-            Your last Visit was on : <%=locals.lastVisit%>
-          </div>
-      <% }%>
+       
        
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -53,3 +49,9 @@
       </div>
     </div>
   </nav>
+  <% if (locals.lastVisit) { %>
+    <div id="lastVisit" class="alert alert-primary" role="alert">
+      Your last Visit was on : <%=lastVisit%>
+    </div>
+  
+<% }%>

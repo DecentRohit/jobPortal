@@ -1,6 +1,13 @@
 import bcrypt from 'bcrypt';
 import UserModel from "../models/userSchema.js"
-import { getAll } from "./jobController.js";
+
+
+
+
+
+
+
+// import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 
 export const login = async(req, res , next)=>{
@@ -16,7 +23,9 @@ export const login = async(req, res , next)=>{
         
         
           req.session.userInfo = {userID , userName , userEmail};
-          console.log("logged in")
+          
+           req.flash('Success', 'Welcome to the website!');
+                  
           res.redirect('/jobs')
         }else{
          res.render('userNotFound')
@@ -64,6 +73,9 @@ export const login = async(req, res , next)=>{
     }
      
     export const home = async(req, res)=>{
+       
+          
+       
         res.render("home" , {userInfo : req.session.userInfo})
     }
  

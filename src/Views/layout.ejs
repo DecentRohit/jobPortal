@@ -4,17 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+
+
     <%- style %>
+    <link rel="stylesheet" href="/css/flashMsg.css">
    <link rel="stylesheet" href="/css/bootstrap.min.css">
+   <script>
+  // Hide toast after a few seconds
+    function hideToast() {
+        const toast =  document.getElementById('toast');
+        const lastVisit =  document.getElementById('lastVisit');
+        if (lastVisit) {
+            setTimeout(() => {
+                lastVisit.style.display = 'none';
+            }, 6000);
+        }
+    
+        if (toast) {
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+    }
+</script>
+
+ 
+
   <script src="/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
+<body onload="hideToast()">
     <%- include('_header' ); -%>
+  
 
-    <%- body%>
-     <div class="container mt-4">
-        <%- include('RegisterModal') %>
-      </div>
+      <% if (locals.successMessage) { %>
+        <div id="toast"><%= successMessage %></div>
+    <% } %>
+  
+    <% if (locals.errorMessage) { %>
+        <div id="toast" class="error"><%= errorMessage %></div>
+    <% } %>
+      <%- body%>
+       <div class="container mt-4">
+          <%- include('RegisterModal') %>
+        </div>
+  
+     
+      
     <%- script %>
+ 
+    
 </body>
 </html>

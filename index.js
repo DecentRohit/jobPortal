@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import express, { urlencoded } from "express";
-import ejs from "ejs";
+import express from "express";
 import router from "./src/route/HomeRoutes.js";
 import path from "path";
 import { fileURLToPath } from 'url';
@@ -10,7 +9,10 @@ import expressLayouts from 'express-ejs-layouts';
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
-import { setLastVisit } from "./src/middlewares/lastVisit.js";
+import flash from "express-flash";
+import flashMsg from "./src/middlewares/toasts.js";
+
+
 
 const app  = express();
 
@@ -30,7 +32,7 @@ app.use(session({
     saveUninitialized : true ,
     cookie : {   maxAge: 1000 * 60 * 60, secure : false}
 }))
-
+app.use(flash());
 
 app.use(express.urlencoded({ extended: true }));
 // Set the views directory
@@ -47,6 +49,7 @@ app.set('layout', 'layout' ); // Points to `views/layout.ejs`
  //tell ejs where to put <link or script tag when encountered in pages
  app.set('layout extractStyles', true);
  app.set('layout extractScripts', true);
+ app.use(flashMsg)
 app.use('/' , router);
 
 
