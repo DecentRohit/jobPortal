@@ -31,8 +31,8 @@ export const login = async (req, res, next) => {
 
                 res.redirect('/jobs')
             } else {
-                req.flash('error' , "log in failed")
-                res.render('userNotFound')
+                req.flash('error' , "Incorrect Email or Password")
+                res.redirect('back')
             }
         } else {
             res.render('userNotFound')
@@ -46,16 +46,24 @@ export const login = async (req, res, next) => {
 
 }
 export const logout = async (req, res) => {
+   try {
     await req.session.destroy((err) => {
+   
         console.log("logged out successfully")
+    
         if (err) {
             console.log(err)
-            res.end("failed to logout ")
         }
     })
 
     await res.clearCookie('lastVisit')
+ 
     res.redirect('/')
+
+   } catch(err){
+    console.log(err)
+    res.render('somethingWentWrong')
+   }
 
 }
 export const register = async (req, res) => {
@@ -69,7 +77,7 @@ export const register = async (req, res) => {
         const newRecruiter = await UserModel.create({ name, email, password: hashpassword })
         await newRecruiter.save();
     }
-
+    req.flash('success' , "Registered Successfully")
     res.redirect('/loginPage')
 }
 

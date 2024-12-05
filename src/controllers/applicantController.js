@@ -8,14 +8,14 @@ export const getallApplicants = async (req, res) => {
 
 
 export const addNewApplicant = async (req, res, next) => {
-    console.log("inside addnewapplicant")
+
     try {
         const { name, email, contact } = req.body;
         const { path } = req.file;
         const alreadyApplicant = await ApplicantModel.find({ email })
         if (alreadyApplicant.length > 0) {
-            console.log(alreadyApplicant.length)
-            res.end("applied already for this job");
+          
+            req.flash('error' , "Already applied for this job")
         
            
         } else {

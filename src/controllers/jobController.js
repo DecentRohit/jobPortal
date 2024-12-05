@@ -26,7 +26,7 @@ export const getOne = async (req, res) => {
 }
 export const deleteOne = async (req, res) => {
     await JobModel.findByIdAndDelete(req.params.id);
-    console.log("job deleted sucessfully")
+    req.flash('success' , "Job deleted successfully")
     getAll(req, res)
 }
 try {
@@ -40,7 +40,7 @@ export const createJob = async (req, res) => {
     try {
         const newJob = await JobModel.create(req.body)
         newJob.save();
-        console.log("job created successuflly")
+        req.flash('success' , "Created Successfully")
         getAll(req, res)
 
 
@@ -58,7 +58,7 @@ export const apply = async (req, res) => {
      { $push: { applicants:new mongoose.Types.ObjectId(req.applicant) } },
         { new: true });
         job.save();
-        console.log("applied for this job successfully")
+        req.flash('success' , "applied for this job successfully")
        Mailer(req, res)
 
     } catch (err) {
@@ -82,6 +82,7 @@ export const updateJob = async (req, res) => {
         const updateJob = await JobModel.findByIdAndUpdate(req.params.id, req.body)
         updateJob.save();
         console.log("job update successuflly")
+        req.flash('success' , "job Updated successfully")
         getOne(req, res)
 
     } catch (err) {
