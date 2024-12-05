@@ -11,6 +11,8 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 import { setLastVisit } from "./src/middlewares/lastVisit.js";
+// import flash from "connect-flash";
+// import flashMsg from "./src/middlewares/toasts.js";
 
 const app  = express();
 
@@ -47,6 +49,8 @@ app.set('layout', 'layout' ); // Points to `views/layout.ejs`
  //tell ejs where to put <link or script tag when encountered in pages
  app.set('layout extractStyles', true);
  app.set('layout extractScripts', true);
+//  app.use(flash())
+//  app.use(flashMsg)
 app.use('/' , router);
 
 

@@ -17,6 +17,7 @@ export const login = async(req, res , next)=>{
         
           req.session.userInfo = {userID , userName , userEmail};
           console.log("logged in")
+     
           res.redirect('/jobs')
         }else{
          res.render('userNotFound')
