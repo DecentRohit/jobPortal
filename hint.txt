@@ -8,3 +8,6 @@ todo:
 aleart
 css fix
 noty
+ <% if (errorMessage) { %>
+        <div id="toast" class="error">successMessage : <%= errorMessage %></div>
+    <% } %>
