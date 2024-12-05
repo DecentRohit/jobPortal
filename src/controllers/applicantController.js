@@ -7,7 +7,7 @@ export const getallApplicants = async (req, res) => {
     console.log(req.params)
     const job = await JobModel.findById(req.params.id).populate('applicants' ).exec();
     console.log(job.applicants)
-    res.render('applicants' ,  {applicants :job.applicants})
+    res.render('applicants' ,  {applicants :job.applicants , job})
 }catch(err){
     req.flash('error' , "something gone wrong")
     console.log(err)
@@ -44,13 +44,16 @@ export const addNewApplicant = async (req, res, next) => {
 }
 export const deleteApplicant = async (req, res) => {
  try{
-    const applicant = ApplicantModel.findById(req.params.applicantId)
+    console.log("inside delete")
+    const applicant =await  ApplicantModel.findById(req.params.applicantId)
     const job = await JobModel.findByIdAndUpdate(
-        req.params.id ,  
- { $pull: { applicants: applicant } },
+        req.params.id,
+        { $pull: { applicants: applicant._id } }, // Remove by ID
+        { new: true } // Return the updated job document
     );
   await  job.save();
   req.flash('success' , "applicant removed from this Job profile")
+  res.redirect('back')
 
  }  catch(err){
     console.log(err)

@@ -26,7 +26,7 @@ export const login = async (req, res, next) => {
 
             req.flash('success' , "logged in successfully")
     
-            console.log(res.locals)
+    
     
 
                 res.redirect('/jobs')
