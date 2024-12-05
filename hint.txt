@@ -3,11 +3,6 @@ youtube : https://www.youtube.com/watch?v=z_46m-Rkk28
 Deployment : https://easily-deploy.onrender.com/
 
 
-<!---->
-todo:
+
 aleart
 css fix
-noty
- <% if (errorMessage) { %>
-        <div id="toast" class="error">successMessage : <%= errorMessage %></div>
-    <% } %>

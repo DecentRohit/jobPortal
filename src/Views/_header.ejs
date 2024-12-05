@@ -49,9 +49,9 @@
       </div>
     </div>
   </nav>
-  <% if (locals.lastVisit) { %>
+
+  <% if (locals.showLastVisit) { %>
     <div id="lastVisit" class="alert alert-primary" role="alert">
-      Your last Visit was on : <%=lastVisit%>
+        Your last visit was on: <%= lastVisit %>
     </div>
-  
-<% }%>
+<% } %>

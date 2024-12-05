@@ -1,58 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 
 
 
-    <%- style %>
+  <%- style %>
+   
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/flashMsg.css">
-   <link rel="stylesheet" href="/css/bootstrap.min.css">
-   <script>
-  // Hide toast after a few seconds
-    function hideToast() {
-        const toast =  document.getElementById('toast');
-        const lastVisit =  document.getElementById('lastVisit');
+    <script>
+      // Hide toast after a few seconds
+      function hideToast() {
+        const toast = document.getElementById('toast');
+        const lastVisit = document.getElementById('lastVisit');
         if (lastVisit) {
-            setTimeout(() => {
-                lastVisit.style.display = 'none';
-            }, 6000);
+          setTimeout(() => {
+            lastVisit.style.display = 'none';
+          }, 6000);
         }
-    
+
         if (toast) {
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 3000);
+         setTimeout(() => {
+            toast.style.display = 'none';
+          }, 3000)
+
+          }
+         
         }
-    }
-</script>
-
- 
-
-  <script src="/js/bootstrap.bundle.min.js"></script>
-</head>
-<body onload="hideToast()">
-    <%- include('_header' ); -%>
-  
-
-      <% if (locals.successMessage) { %>
-        <div id="toast"><%= successMessage %></div>
-    <% } %>
-  
-    <% if (locals.errorMessage) { %>
-        <div id="toast" class="error"><%= errorMessage %></div>
-    <% } %>
-      <%- body%>
-       <div class="container mt-4">
-          <%- include('RegisterModal') %>
-        </div>
-  
-     
       
-    <%- script %>
- 
+    </script>
+
+
+
+  
+</head>
+
+<body onload="hideToast()">
+  <%- include('_header' ); -%>
+  <% if(flash.success && flash.success.length > 0){ %>
+    <div id="toast">
+      <%= flash.success %>
+    </div>  
+<% } %> 
+
+<% if(flash.error && flash.error.length > 0){ %>
+  <div id="toast" class="error">
+    <%= flash.error%>
+  </div>  
+<% } %>
     
+
+            <%- body%>
+              <div class="container mt-4">
+                <%- include('RegisterModal') %>
+              </div>
+
+
+
+              <%- script %>
+
+              <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

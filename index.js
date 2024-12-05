@@ -9,7 +9,7 @@ import expressLayouts from 'express-ejs-layouts';
 import session from "express-session";
 import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
-import flash from "express-flash";
+import flash from 'connect-flash';
 import flashMsg from "./src/middlewares/toasts.js";
 
 
@@ -24,7 +24,9 @@ const __dirname = dirname(__filename);
 app.use(cookieParser())
 app.use(session({
   store: MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/sessions' //storing session in mongodb, so it not lost on server restart
+    mongoUrl: 'mongodb://localhost:27017/sessions' , //storing session in mongodb, so it not lost on server restart
+    ttl: 2 * 24 * 60 * 60 , //seesion expires in 2 days
+    autoRemove: 'native' // Automatically remove expired sessions
 }),
   
     secret : process.env.SECRET , 
@@ -33,6 +35,7 @@ app.use(session({
     cookie : {   maxAge: 1000 * 60 * 60, secure : false}
 }))
 app.use(flash());
+app.use(flashMsg)
 
 app.use(express.urlencoded({ extended: true }));
 // Set the views directory
@@ -49,7 +52,7 @@ app.set('layout', 'layout' ); // Points to `views/layout.ejs`
  //tell ejs where to put <link or script tag when encountered in pages
  app.set('layout extractStyles', true);
  app.set('layout extractScripts', true);
- app.use(flashMsg)
+
 app.use('/' , router);
 
 

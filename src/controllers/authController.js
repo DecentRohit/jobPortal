@@ -24,11 +24,14 @@ export const login = async (req, res, next) => {
 
                 req.session.userInfo = { userID, userName, userEmail };
 
-                req.flash('success' , "hello")
-                console.log(res.locals)
+            req.flash('success' , "logged in successfully")
+    
+            console.log(res.locals)
+    
 
                 res.redirect('/jobs')
             } else {
+                req.flash('error' , "log in failed")
                 res.render('userNotFound')
             }
         } else {
@@ -59,7 +62,8 @@ export const register = async (req, res) => {
     const { name, email, password } = req.body;
     const user = await UserModel.findOne({ email });
     if (user) {
-        console.log("user already exists")
+        console.log("user already Exist")
+        req.flash('error' , "user already Exist")
     } else {
         const hashpassword = await bcrypt.hash(password, 12)
         const newRecruiter = await UserModel.create({ name, email, password: hashpassword })
@@ -74,6 +78,7 @@ export const loginPage = async (req, res) => {
 }
 
 export const home = async (req, res) => {
+    
 
 
 
