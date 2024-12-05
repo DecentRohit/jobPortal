@@ -1,7 +1,10 @@
-// const flashMsg = (req, res, next) => {
-//   res.locals.successMsg = req.flash('success');
-//     res.locals.errorMsg = req.flash('error');
-//     next();
-// }
+const flashMsg = (req, res, next) => {
+  res.locals.flash = {
+    'success': req.flash('success'),
+    'error': req.flash('error')
+}
 
-// export default flashMsg;
+  next();
+}
+
+export default flashMsg ;
