@@ -1,5 +1,6 @@
 import express from "express";
 import * as jobController from "../controllers/jobController.js"
+import * as applicantController from "../controllers/applicantController.js"
 import { applicantRoutes } from "./applicantRouter.js";
 import checkAuth from "../middlewares/sessionAuth.js";
 
@@ -7,7 +8,6 @@ import checkAuth from "../middlewares/sessionAuth.js";
 
 
 const jobRoutes  = express.Router();
-
 jobRoutes.use('/:id/applicants' ,checkAuth ,applicantRoutes )
 jobRoutes.get('/' , jobController.getAll )
 jobRoutes.get('/postJob' ,checkAuth , jobController.postJobForm )

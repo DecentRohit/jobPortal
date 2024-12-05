@@ -2,6 +2,7 @@
 import mongoose from "mongoose";
 import JobModel from "../Models/JobSchema.js"
 import Mailer from "../middlewares/nodemailer.js";
+import { compareSync } from "bcrypt";
 
 export const getAll = async (req, res) => {
 
@@ -16,6 +17,7 @@ export const getAll = async (req, res) => {
 }
 export const getOne = async (req, res) => {
     try {
+
         const job = await JobModel.findById(req.params.id);
         res.render('jobDetails', { job, userInfo: req.session.userInfo })
 
@@ -38,7 +40,8 @@ try {
 export const createJob = async (req, res) => {
 
     try {
-        const newJob = await JobModel.create(req.body)
+        const newJob = await JobModel.create({ ...req.body,
+            postedBy: req.session.userInfo.userID} )
         newJob.save();
         req.flash('success' , "Created Successfully")
         getAll(req, res)

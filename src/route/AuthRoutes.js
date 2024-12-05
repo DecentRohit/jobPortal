@@ -10,7 +10,7 @@ export const AuthRouter  = express.Router();
 AuthRouter.post('/register' , AuthController.register )
 AuthRouter.get('/' ,setLastVisit, AuthController.home )
 AuthRouter.get('/loginPage' , AuthController.loginPage )
-AuthRouter.post('/login' ,setLastVisit,flashMsg , AuthController.login )
+AuthRouter.post('/login' ,setLastVisit, AuthController.login )
 AuthRouter.get('/logout' ,checkAuth , AuthController.logout )
 
 

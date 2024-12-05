@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="/css/applicant.css">
+<% applicants.forEach(applicant => { %>
+<div class="applicants">
+
+ <p class="applicant-name"><strong>Name:</strong> <%=applicant.name%></p>
+    <p class="applicant-email"> <strong>Email:</strong> <%=applicant.email%></p>
+    <p class="applicant-contact"> <strong>Contact:</strong> <%=applicant.contact%></p>
+  
+
+  <div id="fileViewer"><button onclick="window.open('<%=applicant.resumePath%>', '_blank')">View Resume</button></div>
+</div>
+<% }); %>
+

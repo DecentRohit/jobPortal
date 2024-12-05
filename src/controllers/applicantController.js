@@ -1,9 +1,18 @@
 import ApplicantModel from "../models/applicantSchema.js";
+import JobModel from "../Models/JobSchema.js";
 import { getOne } from "./jobController.js";
 
 export const getallApplicants = async (req, res) => {
-    res.end("all application for req.params.id job")
+   try{
+    console.log(req.params)
+    const job = await JobModel.findById(req.params.id).populate('applicants' ).exec();
+    console.log(job.applicants)
+    res.render('applicants' ,  {applicants :job.applicants})
+}catch(err){
+    req.flash('error' , "something gone wrong")
+    console.log(err)
 }
+   } 
 
 
 
@@ -34,7 +43,20 @@ export const addNewApplicant = async (req, res, next) => {
 
 }
 export const deleteApplicant = async (req, res) => {
-    res.end("delete req.params.applicantId applicant from req.params.id job")
+ try{
+    const applicant = ApplicantModel.findById(req.params.applicantId)
+    const job = await JobModel.findByIdAndUpdate(
+        req.params.id ,  
+ { $pull: { applicants: applicant } },
+    );
+  await  job.save();
+  req.flash('success' , "applicant removed from this Job profile")
+
+ }  catch(err){
+    console.log(err)
+    req.flash('error' , "unable to remove applicant")
+ }
+   
 }
 
 export const updateApplicant = async (req, res) => {
@@ -42,5 +64,6 @@ export const updateApplicant = async (req, res) => {
 
 }
 export const getSingleApplicant = async (req, res) => {
+    const applicant = ApplicantModel.findById(req.params.applicantId)
     res.end("get req.params.applicantId applicant from req.params.id job")
 }
