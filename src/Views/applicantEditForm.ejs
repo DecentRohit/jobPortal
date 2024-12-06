@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="/css/applicantEdit.css">
+<div class="update-applicant">
+    <form action="/jobs/<%=job.id%>/applicants/<%=applicant.id%>/update" method="POST" enctype="multipart/form-data">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="name" value="<%=applicant.name%>" placeholder="Enter your username" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email"  value="<%=applicant.email%>"  placeholder="Enter your email" required>
+
+      <label for="number">Contact</label>
+      <input type="number" id="number" name="contact" value="<%=applicant.contact%>"  placeholder="+91 _ _ _ _ _ _ _ _ _ _" required>
+      <label for="file">Updated Resume</label>
+      <input type="file" name="file" id="file" />
+
+      <button type="submit">Submit</button>
+      <a id="back" href="javascript:history.back()" >
+        Go Back
+      </a>
+    </form>
+   
+  </div>
+
+  

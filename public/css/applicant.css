@@ -8,6 +8,7 @@ body {
 
 /* Styling for applicants container */
 .applicants {
+    position: relative;
     background: #fff;
     margin: 20px auto;
     padding: 20px;
@@ -16,6 +17,7 @@ body {
     max-width: 600px;
     border: 1px solid #ddd;
 }
+
 
 /* Styling for applicant details */
 .applicant-name, 
@@ -26,7 +28,27 @@ body {
     font-size: 16px;
     line-height: 1.5;
 }
-
+.applicant-edit {
+position: absolute;
+top: 2px; /* Aligns to the top */
+  right: 2px; /* Aligns to the right */
+  background-color: lightblue; /* Optional: styling for visualization */
+  padding: 5px; /* Optional: spacing */
+  border-radius: 20%;
+}
+.applicant-delete button{
+    position: absolute;
+bottom: 2px; /* Aligns to the top */
+  right: 2px; /* Aligns to the right */
+  background-color: rgb(232, 18, 18); /* Optional: styling for visualization */
+  padding: 5px; /* Optional: spacing */
+  border-radius: 20%;
+}
+.applicant-edit img{
+    height: 25px;
+    width: 25px;
+    
+}
 .applicant-name strong,
 .applicant-email strong,
 .applicant-contact strong {

@@ -1,26 +1,26 @@
 import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema({
-    Category:{
-        type : String ,
-        enum : ['Tech' , 'Non-Tech']
-    } ,
-    Designation: String, 
+    Category: {
+        type: String,
+        enum: ['Tech', 'Non-Tech']
+    },
+    Designation: String,
     Location: String,
     companyName: String,
     salary: String,
-    
-    numberOfOpenings: Number, 
+
+    numberOfOpenings: Number,
     skillsRequired: [String],
-    applyBy: Date, 
+    applyBy: Date,
     postedOn: {
-        type: Date, 
+        type: Date,
         default: Date.now
     },
-    postedBy : {
+    postedBy: {
         type: mongoose.Schema.Types.ObjectId,
-         ref: 'User'
-    } ,
+        ref: 'User'
+    },
     applicants: [
         {
             type: mongoose.Schema.Types.ObjectId,

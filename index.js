@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import MongoStore from "connect-mongo";
 import flash from 'connect-flash';
 import flashMsg from "./src/middlewares/toasts.js";
+import methodOverride from "method-override"
 
 
 
@@ -52,7 +53,7 @@ app.set('layout', 'layout' ); // Points to `views/layout.ejs`
  //tell ejs where to put <link or script tag when encountered in pages
  app.set('layout extractStyles', true);
  app.set('layout extractScripts', true);
-
+ app.use(methodOverride('_method'));
 app.use('/' , router);
 
 

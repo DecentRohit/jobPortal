@@ -7,16 +7,16 @@ import checkAuth from "../middlewares/sessionAuth.js";
 
 
 
-const jobRoutes  = express.Router();
-jobRoutes.use('/:id/applicants' ,checkAuth ,applicantRoutes )
-jobRoutes.get('/' , jobController.getAll )
-jobRoutes.get('/postJob' ,checkAuth , jobController.postJobForm )
-jobRoutes.post('/' , checkAuth , jobController.createJob )
+const jobRoutes = express.Router();
+jobRoutes.use('/:id/applicants', checkAuth, applicantRoutes)
+jobRoutes.get('/', jobController.getAll)
+jobRoutes.get('/postJob', checkAuth, jobController.postJobForm)
+jobRoutes.post('/', checkAuth, jobController.createJob)
 // jobRoutes.put('/:id' , checkAuth , jobController.editJob )
-jobRoutes.post('/:id' ,checkAuth , jobController.deleteOne )
-jobRoutes.get('/:id' , jobController.getOne )
-jobRoutes.get('/:id/update' , checkAuth , jobController.showUpdateForm)
-jobRoutes.post('/:id/update' , checkAuth ,jobController.updateJob )
+jobRoutes.post('/:id', checkAuth, jobController.deleteOne)
+jobRoutes.get('/:id', jobController.getOne)
+jobRoutes.get('/:id/update', checkAuth, jobController.showUpdateForm)
+jobRoutes.post('/:id/update', checkAuth, jobController.updateJob)
 
 
 

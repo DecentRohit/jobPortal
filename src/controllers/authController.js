@@ -24,14 +24,14 @@ export const login = async (req, res, next) => {
 
                 req.session.userInfo = { userID, userName, userEmail };
 
-            req.flash('success' , "logged in successfully")
-    
-    
-    
+                req.flash('success', "logged in successfully")
+
+
+
 
                 res.redirect('/jobs')
             } else {
-                req.flash('error' , "Incorrect Email or Password")
+                req.flash('error', "Incorrect Email or Password")
                 res.redirect('back')
             }
         } else {
@@ -46,24 +46,24 @@ export const login = async (req, res, next) => {
 
 }
 export const logout = async (req, res) => {
-   try {
-    await req.session.destroy((err) => {
-   
-        console.log("logged out successfully")
-    
-        if (err) {
-            console.log(err)
-        }
-    })
+    try {
+        await req.session.destroy((err) => {
 
-    await res.clearCookie('lastVisit')
- 
-    res.redirect('/')
+            console.log("logged out successfully")
 
-   } catch(err){
-    console.log(err)
-    res.render('somethingWentWrong')
-   }
+            if (err) {
+                console.log(err)
+            }
+        })
+
+        await res.clearCookie('lastVisit')
+
+        res.redirect('/')
+
+    } catch (err) {
+        console.log(err)
+        res.render('somethingWentWrong')
+    }
 
 }
 export const register = async (req, res) => {
@@ -71,13 +71,13 @@ export const register = async (req, res) => {
     const user = await UserModel.findOne({ email });
     if (user) {
         console.log("user already Exist")
-        req.flash('error' , "user already Exist")
+        req.flash('error', "user already Exist")
     } else {
         const hashpassword = await bcrypt.hash(password, 12)
         const newRecruiter = await UserModel.create({ name, email, password: hashpassword })
         await newRecruiter.save();
     }
-    req.flash('success' , "Registered Successfully")
+    req.flash('success', "Registered Successfully")
     res.redirect('/loginPage')
 }
 
@@ -86,7 +86,7 @@ export const loginPage = async (req, res) => {
 }
 
 export const home = async (req, res) => {
-    
+
 
 
 

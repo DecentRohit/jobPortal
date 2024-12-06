@@ -4,11 +4,11 @@
 
   <a href="/jobs"><button type="submit" class="btn btn-primary">Im a Job Seeker</button></a>
 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
- <% if (locals.userInfo) { %>
- Not <%=userInfo.userName %>? Login as another user
-<% } else { %>
-  I'm a Recruiter
-<% } %>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <% if (locals.userInfo) { %>
+      Not <%=userInfo.userName %>? Login as another user
+        <% } else { %>
+          I'm a Recruiter
+          <% } %>
   </button>
 </div>
