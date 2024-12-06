@@ -63,7 +63,7 @@ export const apply = async (req, res) => {
         job.save();
         req.flash('success' , "applied for this job successfully")
        Mailer(req, res)
-
+res.redirect('back')
     } catch (err) {
         console.log(err)
         res.render('somethingWentWrong')
@@ -74,7 +74,7 @@ export const showUpdateForm = async (req, res) => {
     try {
         const job = await JobModel.findById(req.params.id);
         console.log(job)
-        res.render('EditJobForm', { job, userInfo: req.session.userInfo })
+        res.render('EditJobForm', { job})
     } catch (err) {
         console.log(err)
         res.render('somethingWentWrong')
@@ -95,7 +95,7 @@ export const updateJob = async (req, res) => {
 }
 export const postJobForm = async (req, res) => {
     try {
-        res.render('newJob', { userInfo: req.session.userInfo })
+        res.render('newJob')
     } catch (err) {
         console.log(err)
         res.render('somethingWentWrong')

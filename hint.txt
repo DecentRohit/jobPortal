@@ -6,9 +6,3 @@ Deployment : https://easily-deploy.onrender.com/
 css fix
 applicant controller
 
-if i use routes like this
-jobRoutes.use('/:id/applicants' ,checkAuth ,applicantRoutes )
-applicantRoutes.get('/' , checkAuth, applicantController.getallApplicants )
-
-req.params.id is empty inside getallApplicants
-

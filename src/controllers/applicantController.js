@@ -1,12 +1,12 @@
 import ApplicantModel from "../models/applicantSchema.js";
 import JobModel from "../Models/JobSchema.js";
-import { getOne } from "./jobController.js";
 
 export const getallApplicants = async (req, res) => {
    try{
     console.log(req.params)
     const job = await JobModel.findById(req.params.id).populate('applicants' ).exec();
-    console.log(job.applicants)
+    console.log(job)
+
     res.render('applicants' ,  {applicants :job.applicants , job})
 }catch(err){
     req.flash('error' , "something gone wrong")

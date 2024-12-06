@@ -10,7 +10,7 @@ applicantRoutes.get('/' , checkAuth, applicantController.getallApplicants )
 
 applicantRoutes.post('/' ,upload.single('file'), applicantController.addNewApplicant )
 applicantRoutes.get('/:applicantId' , applicantController.getSingleApplicant)
-applicantRoutes.post('/:applicantId' , applicantController.deleteApplicant )
+applicantRoutes.post('/:applicantId' , checkAuth, applicantController.deleteApplicant )
 
 applicantRoutes.put('/:applicantId' , applicantController.updateApplicant)
 

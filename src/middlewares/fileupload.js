@@ -12,8 +12,9 @@ const storage = multer.diskStorage({
       cb(null, path.join(__dirname , "../../public/Resume_uploads"))
     },
     filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix)
+      const originalExtension = path.extname(file.originalname); // Get the original file extension
+      const uniqueName = `${Date.now()}-${Math.round(Math.random() * 1E9)}`; // Create a unique name
+      cb(null, uniqueName + originalExtension);
     }
   })
   
