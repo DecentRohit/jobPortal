@@ -15,10 +15,16 @@
     <p class="skills-required"> <strong>Skills:</strong> <%=job.skillsRequired%></p>
     <p class="apply-by"> <strong>Apply By: </strong><%=job.applyBy.toDateString()%></p>
     <p class="job-posted"> <strong>Posted On: </strong><%=job.postedOn.toDateString()%></p>
-    <p class="applicants"> <strong>Applicants :</strong><%=job.applicants.length%></p>
-    <button type="submit" class="applyBtn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Apply Now</button>
+    <% if (locals.userInfo) { %>
+      <p class="applicants"> <strong><a href="/jobs/<%=job.id%>/applicants">Applicants : </a></strong><%=job.applicants.length%></p>
+  <% } else { %>
+    <p class="applicants"> <strong>Applicants</strong>  : <%=job.applicants.length%></p>
+  <% } %>
+   
+    <button type="submit" class="applyBtn" data-bs-toggle="modal" data-bs-target="#staticBackdropr">Apply Now</button>
   
   </div>
   <div class="container mt-4">
     <%- include('applicantRegister') %>
   </div>
+ 

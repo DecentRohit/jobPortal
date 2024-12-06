@@ -17,10 +17,14 @@ const jobSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now
     },
+    postedBy : {
+        type: mongoose.Schema.Types.ObjectId,
+         ref: 'User'
+    } ,
     applicants: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User' // Reference to the User model
+            ref: 'Applicant' // Reference to the User model
         }
     ]
 });
