@@ -1,8 +1,9 @@
 
 import mongoose from "mongoose";
 import JobModel from "../Models/JobSchema.js"
-import Mailer from "../middlewares/nodemailer.js";
-import { compareSync } from "bcrypt";
+import queue from "../../Config/kue.js";
+import "../middlewares/emailWorker.js"
+
 
 export const getAll = async (req, res) => {
 
@@ -63,8 +64,19 @@ export const apply = async (req, res) => {
             { $push: { applicants: new mongoose.Types.ObjectId(req.applicant) } },
             { new: true });
         job.save();
+const applicant = req.applicant;
+req.jobInfo ={ applicant , job}
+
         req.flash('success', "applied for this job successfully")
-        Mailer(req, res)
+       
+        const kueJob = queue.create('confirmationMail', req.jobInfo ).save(function (err) {
+           
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log( "job enqueued" , kueJob.id)
+        })
         res.redirect('back')
     } catch (err) {
         console.log(err)

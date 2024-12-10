@@ -11,7 +11,7 @@ const jwtAuth = (req, res, next) => {
   }
 
   try {
-    const payload = jwt.sign(token, process.env.SECRET)
+    const payload = jwt.verify(token, process.env.SECRET)
     console.log("payload", payload)
     req.userInfo = payload;
 

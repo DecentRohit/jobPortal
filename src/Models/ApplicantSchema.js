@@ -14,7 +14,11 @@ const applicantSchema = new mongoose.Schema({
     },
     resumePath: {
         type: String  // stores only path
-    }
+    },
+    appliedFor : [{
+       type : mongoose.Schema.Types.ObjectId,
+       ref : 'Job'
+    }]
 })
 
 const ApplicantModel = mongoose.model('Applicant', applicantSchema);

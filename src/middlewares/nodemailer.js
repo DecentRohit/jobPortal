@@ -3,37 +3,40 @@
 import nodemailer from 'nodemailer';
 import ApplicantModel from '../models/applicantSchema.js';
 import { getOne } from '../controllers/jobController.js';
+import ejs from 'ejs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const Mailer = async (req, res) => {
-    try {
-        const applicant = await ApplicantModel.findById(req.applicant)
-        const applicantEmail = applicant.email;
-        console.log(applicantEmail)
-        const transporter = await nodemailer.createTransport({
+import { dirname } from 'path';
 
-            service: 'gmail',
-            auth: {
-                user: 'royrohit848@gmail.com',
-                pass: process.env.PASS
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const transporter = await nodemailer.createTransport({
+
+    service: 'gmail',
+    auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS
+    }
+})
+
+let renderTemplate = (data, relativePath) => {
+    let htmlEjs;
+    ejs.renderFile(path.join(__dirname, '../views/MailTemplates', relativePath),
+        data,
+        function (err, template) {
+            if (err) {
+                console.log(err)
             }
-        })
-
-        const mailOptions = {
-            from: 'royrohit848@gmail.com',
-            to: applicantEmail,
-            subject: 'Applied for new Job',
-            text: 'Job application has been registered with us'
+            htmlEjs = template;
         }
 
-        await transporter.sendMail(mailOptions);
+    )
 
-        getOne(req, res)
-    } catch (err) {
-        console.log(err)
-
-    }
-
+    return htmlEjs;
 }
 
-
-export default Mailer;
+export { transporter, renderTemplate };
